@@ -135,15 +135,26 @@
                      {{-- Project name --}}
                      <h3>Project Information</h3>
 
-                     <div class="card-title mb-0 d-flex justify-content-between border">
-                        <div>
-                          {{$project->name}} Housing Project
-                        </div>
-                        <div>
-                          Status: {{$project->status}}
-                        </div>
+                     <div class="card-title mb-0 d-flex">
+                        <h4>{{$project->name}} Housing Project </h4> <br>
+                       
                       </div>
-         
+                      <h4> Status: 
+                     @if($project->status == "done")
+                            <span class="mt-2 badge badge-pill badge-success">{{$project->status}}</span>
+                     @elseif ($project->status == "cancelled")
+                         <span class="mt-2 badge badge-pill badge-warning">{{$project->status}}</span>
+                     @elseif ($project->status == "delayed")
+                        <span class="mt-2 badge badge-pill badge-danger">{{$project->status}}</span>
+                     @else
+                     {{-- In progress --}}
+                       <span class="mt-2 badge badge-pill badge-primary">{{$project->status}}</span>
+                      @endif
+                     
+                        
+                        
+                        
+                      </h4>
                     </div>
                  </div>
                  <div class="card-body">
