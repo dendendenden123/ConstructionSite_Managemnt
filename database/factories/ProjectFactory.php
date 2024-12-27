@@ -17,13 +17,15 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+
+        $statusList = ["done", "cancelled", "delayed", "In progress"];
         return [
             "name" => fake()->name,
             "description" => fake()->text(50),
             "start_date" => fake()->dateTimeThisYear,
             "end_date" => fake()->dateTimeThisYear,
             "budget" => fake()->numberBetween(100, 999),
-            "status" => fake()->text(10),
+            "status" => $statusList[rand(0,3)],
             "user_id" => User::factory()
         ];
     }
