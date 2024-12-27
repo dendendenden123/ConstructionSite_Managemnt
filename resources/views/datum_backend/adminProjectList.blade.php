@@ -13,10 +13,17 @@
     </td>
     <td>{{$project->end_date}}</td>
     <td>
-    <p class="mb-0 text-success d-flex justify-content-start align-items-center">
-        <small><svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">                                                
-        <circle cx="12" cy="12" r="8" fill="#3cb72c"></circle></svg>
-        </small> {{$project->status}}
+    <p class="mb-0 d-flex justify-content-start align-items-center">
+        @if($project->status == "done")
+            <span class="mt-2 badge badge-pill badge-success">{{$project->status}}</span>
+        @elseif ($project->status == "cancelled")
+            <span class="mt-2 badge badge-pill badge-warning">{{$project->status}}</span>
+        @elseif ($project->status == "delayed")
+            <span class="mt-2 badge badge-pill badge-danger">{{$project->status}}</span>
+        @else
+            {{-- In progress --}}
+             <span class="mt-2 badge badge-pill badge-primary">{{$project->status}}</span>
+        @endif
     </p>
     </td>
     <td class="text-right">${{$project->budget}}</td>
