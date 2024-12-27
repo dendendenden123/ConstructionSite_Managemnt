@@ -52,12 +52,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function employee(){
-
-        return $this->hasMany(Employee::Class);
-    }
-
     public function contract(){
         return $this->hasMany(Contract::class);
     }

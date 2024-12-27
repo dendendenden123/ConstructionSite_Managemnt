@@ -7,6 +7,7 @@
               <div class="card card-block p-card">
                  <div class="profile-box">
                   <h3>Client Information</h3>
+                  <hr class="bg-dark border-0" style="height: 3px;">
                     <div class="profile-card rounded">
                     
                        <img src="{{ asset('/datum_assets/images/user/1.jpg') }}" alt="profile-bg"
@@ -128,13 +129,15 @@
                  </div>
               </div>
            </div>
+           
            <div class="col-lg-8">
               <div class="card card-block">
                  <div class="card-header d-flex justify-content-between pb-0">
                     <div class="header-title">
+                     
                      {{-- Project name --}}
                      <h3>Project Information</h3>
-
+                     <hr class="bg-dark border-0" style="height: 3px;">
                      <div class="card-title mb-0 d-flex">
                         <h4>{{$project->name}} Housing Project </h4> <br>
                        
@@ -150,8 +153,7 @@
                      {{-- In progress --}}
                        <span class="mt-2 badge badge-pill badge-primary">{{$project->status}}</span>
                       @endif
-                     
-                        
+        
                  
                         
                       </h4>
@@ -160,6 +162,72 @@
                  <div class="card-body">
                   <h5 class="mb-2 mt-4">Description</h5>
                     <p>{{$project->description}}</p>
+                    <h5 class="mb-2 mt-4">Start Date</h5>
+                    <p>{{$project->start_date}}</p>
+                    <h5 class="mb-2 mt-4">Due Date</h5>
+                    <p>{{$project->end_date}}</p>
+                    <h5 class="mb-2 mt-4">Alloted Fund</h5>
+                    <p>${{$project->budget}}</p>
+
+                    <div>
+                     <br>
+                     <h5 class="mb-2 mt-4">Overall Progress Tracking<h5>
+                     <div class="iq-progress-bar-linear d-inline-block w-100 mb-3">
+                        <span>Completeness</span>
+                        <span class="float-right">90%</span>
+                        <div class="iq-progress-bar pro-skill">
+                           <span data-percent="90"></span>
+                        </div>
+                     </div>
+                     <hr class="bg-dark border-0" style="height: 3px;">
+        
+                     <H5>Team and Roles</H5>
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Team members</th>
+                              <th scope="col">Department</th>
+                              <th scope="col">Position</th>
+                              <th scope="col">Task Assignment</th>
+                              <th scope="col">Due Date</th>
+                              <th scope="col">Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           @php
+                              $rowCount = 1;
+                           @endphp
+                           @foreach ($project->task  as  $task)
+                           <tr>
+                              <th scope="row">{{$rowCount++}}</th>
+                              <td>{{$task->employee->name}}</td>
+                              <td>{{$task->employee->department}}</td>
+                              <td>{{$task->employee->position}}</td>
+                              <td>{{$task->description}}</td>
+                              <td>{{$task->due_date}}</td>
+                              <td>
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" stroke-width="1.5" stroke="green" class="size-1">
+                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                               </svg>
+                               <a href="/taskDelete/{{$project->id}}/{{$task->id}}">
+                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="red" class="size-1">
+                                 <path fill-rule="evenodd" d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z" clip-rule="evenodd" />
+                               </svg>
+                               </a>
+
+                               </td>
+                        
+                           </tr>   
+                           @endforeach
+                        </tbody>
+                        </table>
+                     </div>
+
+      
+
+     
+
                     <h5 class="mb-2 mt-4">Personal Skills</h5>
                     <ul class="list-unstyled mb-0">
                        <li class="mb-3">

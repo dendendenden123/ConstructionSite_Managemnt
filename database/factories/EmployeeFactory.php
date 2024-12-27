@@ -18,7 +18,7 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-           "user_id"=> User::factory(),
+           "name"=> fake()->name,
             "rfid_tag" => fake()->numberBetween(9999,99999),
            "position" => fake()->jobTitle,
             "department" => fake()->jobTitle,

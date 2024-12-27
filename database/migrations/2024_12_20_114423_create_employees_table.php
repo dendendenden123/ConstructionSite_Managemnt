@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, "user_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("name");
             $table->integer("rfid_tag");
             $table->string("position");
             $table->string("department");

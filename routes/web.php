@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\projectController;
+use App\Http\Controllers\taskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
@@ -38,6 +39,9 @@ Route::post("/register",  [registerController::class, "store"]);
 //project
 Route::get('/admin', [projectController::class,"index"]);
 Route::get('/admin/{id}', [projectController::class,"show"]);
+
+//task
+Route::get("/taskDelete/{projectId}/{taskId}", [taskController::class, "destroy"]);
 
 
 

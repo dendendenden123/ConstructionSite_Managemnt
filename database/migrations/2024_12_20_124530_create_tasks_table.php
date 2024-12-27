@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Project::class, "project_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("name");
             $table->string("description");
-            $table->foreignIdFor(Employee::class, "assigned_to")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Employee::class, "employee_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp("start_date");
             $table->timestamp("due_date");
             $table->string("status");

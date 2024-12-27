@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Project;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -32,7 +33,7 @@ class projectController extends Controller
 
 
     public function show($id){
-    $project = Project::with(["user", "stockMovement", "task", "invoice", "contract"])->find($id);
-     return view("datum_backend.project", ["project"=>$project]);
+        $project = Project::with(["user", "stockMovement", "task", "task.employee", "invoice", "contract"])->find($id); 
+        return view("datum_backend.project", ["project"=>$project]);
     }
 }
