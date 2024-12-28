@@ -181,7 +181,7 @@
                      </div>
                      <hr class="bg-dark border-0" style="height: 3px;">
                      
-                     <H5>Team and Roles</H5> 
+                     <H4>Team and Task</H4> 
                      <table class="table">
                         <thead>
                            <tr>
@@ -195,7 +195,7 @@
                            </tr>
                         </thead>
                         <tbody>
-         p
+         
                            @foreach ($project->task  as  $task)
                            <tr class="task{{$task->id}}">
                               <th scope="row">{{$task->id}}</th>
@@ -224,7 +224,7 @@
                         </table>
 
                         <span class="d-flex justify-content-end">
-                           <a href="/task-create"><button class="btn btn-primary">Assign new Task</button></a>
+                           <a href="/taskCreate/{{$project->id}}"><button class="btn btn-primary">Assign new Task</button></a>
                        </span>
                      </div>
 

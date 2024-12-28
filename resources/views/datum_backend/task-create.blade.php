@@ -1,21 +1,44 @@
 <x-datum_blank_page>
-    <h3>Update Task</h3><br>
-    <form class="taskUpdateForm" method="POST" action="/taskUpdate/{{$task->id}}">
+    <h3>Assign new task</h3><br>
+    <form class="taskCreateForm" method="POST">
         @csrf
         <div class="form-row">
            <div class="col-md-6 mb-3">
               <label for="validationDefault01">Task Title</label>
-              <input type="text" class="form-control" id="validationDefault01"  name="name" value="{{$task->name}}"required>
+              <input type="text" class="form-control" id="validationDefault01"  name="name" required>
            </div>
            <div class="col-md-6 mb-3">
               <label for="validationDefault02">Description</label>
-              <input type="text" class="form-control" id="validationDefault02" name="description" value="{{$task->description}}" required>
+              <input type="text" class="form-control" id="validationDefault02" name="description"  required>
            </div>
+
+           <div class="col-md-6 mb-3">
+            <label for="validationDefaultUsername">Assigned To (Project)
+            </label>
+            <select class="form-control" id="validationDefault04" name="project_id" required>
+              <option selected  value="{{$defaultProject->id}}">{{$defaultProject->name}}</option>
+              @foreach ( $projectTitle as $project)
+              <option value="{{$project->id}}">
+
+                  <span>{{ $project->name }}&nbsp;&nbsp;&nbsp;</span>
+              </option>
+              @endforeach
+              
+           </select>
+         </div>
+
+         <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="exampleInputdate">Start Date</label>
+              <input type="date" class="form-control" id="exampleInputdate" name="start_date" >
+           </div>
+         </div>
+
            <div class="col-md-6 mb-3">
               <label for="validationDefaultUsername">Assigned To (Employee)
               </label>
               <select class="form-control" id="validationDefault04" name="employee_id" required>
-                <option selected  value="{{$task->employee->id}}">{{$task->employee->name}}</option>
+                <option selected  value=""></option>
                 @foreach ( $assignedEmployee as $employee)
                 <option value="{{ $employee[0] }}">
 
@@ -26,33 +49,28 @@
                 
              </select>
            </div>
-           <div class="col-md-6 mb-3">
-              <div class="form-group">
-                <label for="exampleInputdate">Start Date</label>
-                <input type="date" class="form-control" id="exampleInputdate" name="start_date" value="{{date('Y-m-d', strtotime($task->start_date))}}">
-             </div>
-           </div>
+
            <div class="col-md-6 mb-3">
             <div class="form-group">
                 <label for="exampleInputdate">Due Date</label>
-                <input type="date" class="form-control" id="exampleInputdate" name="due_date" value="{{date('Y-m-d', strtotime($task->due_date))}}">
+                <input type="date" class="form-control" id="exampleInputdate" name="due_date" >
              </div>
 
            </div>
            <div class="col-md-6 mb-3">
               <label for="validationDefault05">Status</label>
               <select class="form-control" id="validationDefault04" name="status" required>
-                <option selected value="{{$task->status}}">{{$task->status}}</option>
-                <option value="Pending">Pending</option>
+                <option selected value="pending">pending</option>
                 <option value="In progress">In progress</option>
                 <option value="done">done</option>
                 <option value="cancelled">cancelled</option>
                 <option value="delayed">delayed</option>
+                <option value="Pending">Pending</option>
              </select>
            </div>
         </div>
         <div class="form-group">
-           <button class="btn btn-primary" type="submit">Update</button>
+           <button class="btn btn-primary" type="submit">Assign</button>
            <a class= "adminProject"><button class="btn btn-light">Back</button></a>
         </div>
      </form>
@@ -64,9 +82,10 @@
 
     document.addEventListener("DOMContentLoaded", function() {
 
-        //get the project id
-        var parts = window.location.href.split("/");
-        var lastPart = parts[parts.length - 2];
+        let url = window.location.href.split("/")
+        let projectId = url.length - 1
+        $(".taskCreateForm").attr("action", "/taskStore/" + projectId)
+
 
         //assigned the project id to href
         $('.adminProject').on("click", function(){
@@ -77,8 +96,8 @@
         $('[type="submit"]').on("click", function(event) {
             event.preventDefault();
 
-            const actionUrl = $(this).closest(".taskUpdateForm").attr('action'); 
-            const formData = $(this).closest(".taskUpdateForm").serialize();
+            const actionUrl = $(this).closest(".taskCreateForm").attr('action'); 
+            const formData = $(this).closest(".taskCreateForm").serialize();
 
             console.log("Submitting form data:", formData); // Debugging, remove in production
 
@@ -98,12 +117,15 @@
                         ja({
                             type: "success",
                             animation: "rotateX",
-                            html: "<b style='font-size: 30px;'>Great!!</b><br>Task Updated Successfully.",
+                            html: "<b style='font-size: 30px;'>Great!!</b><br>Task was Assigned Successfully.",
                             continueButtonHtml: "Got it!",
                          });
 
                          $(".ja-continue").on("click", function(){
-                            window.location.href = "/admin/" + lastPart;
+                            
+                            let url = window.location.href.split("/")
+                            let projectId = url.length - 1
+                            window.location.href = "/admin/" + projectId;
                          })
 
                         

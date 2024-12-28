@@ -41,6 +41,8 @@ Route::get('/admin', [projectController::class,"index"]);
 Route::get('/admin/{id}', [projectController::class,"show"]);
 
 //task
+Route::get("/taskCreate/{projectId}", [taskController::class, "create"]);
+Route::post("/taskStore/{projectId}", [taskController::class, "store"]);
 Route::get("/taskDelete/{projectId}/{taskId}", [taskController::class, "destroy"]);
 Route::get("/taskEdit/{projectId}/{taskId}", [taskController::class, "edit"]);
 Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
