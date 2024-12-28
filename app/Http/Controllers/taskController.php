@@ -26,7 +26,7 @@ class taskController extends Controller
 
     public function store(Request $request){
         Task::create($request->all());
-        return response()->json("success");
+        return response()->json(["id" => $request->project_id]);
 
     }
 

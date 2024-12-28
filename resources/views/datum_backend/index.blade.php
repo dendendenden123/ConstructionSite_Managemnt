@@ -1258,64 +1258,38 @@
          <div class="card">
             <div class="card-header d-flex justify-content-between">
                <div class="header-title">
-                  <h4 class="card-title">New Customer</h4>
+                  <h4 class="card-title">Project</h4>
                </div>
                <div class="card-header-toolbar d-flex align-items-center">                  
-                  <div class="dropdown">
-                        <a href="#" class="text-muted pl-3" id="dropdownMenuButton-customer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" xmlns:xlink="http://www.w3.org/1999/xlink" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                              <g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                 <circle cx="12" cy="12" r="1"/>
-                                 <circle cx="19" cy="12" r="1"/>
-                                 <circle cx="5" cy="12" r="1"/></g>
-                           </svg>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-customer">
-                           <a class="dropdown-item" href="#">
-                                 <svg class="svg-icon text-secondary" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                 </svg>
-                                 Edit
-                           </a>
-                           <a class="dropdown-item" href="#">
-                                 <svg class="svg-icon text-secondary" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                 </svg>
-                                 View
-                           </a>
-                           <a class="dropdown-item" href="#">
-                                 <svg class="svg-icon text-secondary" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                 </svg>
-                                 Delete
-                           </a>
-                        </div>
-                     </div>
+                  <a href="/projectCreate"> <button class="btn btn-primary">New Project</button></a>
                </div>
             </div>
             <div class="card-body p-0">
                <div class="table-responsive">
-                  <table class="table mb-0">
-                     <thead class="table-color-heading">
-                        <tr class="text-secondary">
-                           <th scope="col">Date</th>
-                           <th scope="col">Project</th>
-                           <th scope="col">Due Date</th>
-                           <th scope="col">Status</th>
-                           <th scope="col" class="text-right">Total</th>
-                        </tr>
-                     </thead>
+                <table class="table">
+                    <thead>
+                       <tr>
+                          <th scope="col">Project ID</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Client</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Cost</th>
+                          <th scope="col">status</th>
+                          <th scope="col">Start Date</th>
+                          <th scope="col">Due Date</th>
+                          <th scope="col">Action</th>
+                       </tr>
+                    </thead>
                   
                      <tbody class="adminProjectlist">
 
-                                    @include("datum_backend.adminProjectList")
+                                @include("datum_backend.adminProjectList")
           
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-end align-items-center border-top-table p-3">
-                    <button class="btn btn-secondary btn-sm">See All</button>
-                    {{$projects->links()}}
+                    
+                 
                     </div>
                             
                </div>
@@ -1392,76 +1366,5 @@
     
     <!-- app JavaScript -->
     <script src="{{ asset('/datum_assets/js/app.js') }}"></script>  
-
-
-
-    <script>
-
-$(document).ready(function() {
-    let prev = $('[role="navigation"]').children().first();
-
-if (prev.length > 0) {
-
-    prev.replaceWith(function() {
-                return $('<a>', {
-                    text: $(this).text(), 
-                    href: "#",           
-                    class: $(this).attr("class"),
-                    rel: "prev"
-                });
-            });
-
-
-} else {
-    console.log("No navigation element found.");
-}
-});
-
-
-
-$(document).on('click', '[rel="next"], [rel="prev"]', function(event) {
-    event.preventDefault();
-    $('[rel="prev"]').attr("href");
-
-    let url = $(this).attr('href').split("page=")[1];
-   fetchData(url);
-});
-
-function fetchData(url) {
-    $.ajax({
-        url: "/admin?page=" + url,
-        success: function(response) {
-
-            if(!response || response.html === undefined || response.html.trim() === ""){
-                $('[rel="next"]').attr("href","/admin?page=" + url);
-                return
-              
-            }else if( url < 1){
-                $('[rel="prev"]').attr("href","/admin?page=0");
-                return
-            }else if(window.location.href.includes("page=1") ){
-                window.location.href = "/admin?page=2";
-                return
-            }
-
-            console.log($('[rel="prev"]').attr("href"));
-
-
-
-            $('[rel="next"]').attr("href", "/admin?page=" + (parseInt(url) + 1))
-            $('[rel="prev"]').attr("href", "/admin?page=" + (parseInt(url) - 1))
-            $('.adminProjectlist').html(response.html);
-            return url;
-        },
-        error: function(response) {
-            console.error(response); 
-            alert('Error fetching data');
-        }
-    });
-}
-
-
-    </script>
-
 </body>
 </html>

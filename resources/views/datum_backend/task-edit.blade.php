@@ -7,10 +7,14 @@
               <label for="validationDefault01">Task Title</label>
               <input type="text" class="form-control" id="validationDefault01"  name="name" value="{{$task->name}}"required>
            </div>
+
            <div class="col-md-6 mb-3">
-              <label for="validationDefault02">Description</label>
-              <input type="text" class="form-control" id="validationDefault02" name="description" value="{{$task->description}}" required>
+            <div class="form-group">
+              <label for="exampleInputdate">Start Date</label>
+              <input type="date" class="form-control" id="exampleInputdate" name="start_date" value="{{date('Y-m-d', strtotime($task->start_date))}}">
            </div>
+         </div>
+
            <div class="col-md-6 mb-3">
               <label for="validationDefaultUsername">Assigned To (Employee)
               </label>
@@ -26,12 +30,7 @@
                 
              </select>
            </div>
-           <div class="col-md-6 mb-3">
-              <div class="form-group">
-                <label for="exampleInputdate">Start Date</label>
-                <input type="date" class="form-control" id="exampleInputdate" name="start_date" value="{{date('Y-m-d', strtotime($task->start_date))}}">
-             </div>
-           </div>
+
            <div class="col-md-6 mb-3">
             <div class="form-group">
                 <label for="exampleInputdate">Due Date</label>
@@ -50,6 +49,11 @@
                 <option value="delayed">delayed</option>
              </select>
            </div>
+
+           <div class="col-md-6 mb-3">
+            <label for="validationDefault02">Description</label>
+            <textarea class="form-control" id="validationDefault02" name="description" required>{{$task->description}}</textarea>
+         </div>
         </div>
         <div class="form-group">
            <button class="btn btn-primary" type="submit">Update</button>

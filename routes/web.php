@@ -39,6 +39,10 @@ Route::post("/register",  [registerController::class, "store"]);
 //project
 Route::get('/admin', [projectController::class,"index"]);
 Route::get('/admin/{id}', [projectController::class,"show"]);
+Route::get("/projectCreate", [projectController::class,"create"]);
+Route::post("/projectStore", [projectController::class,"store"]);
+Route::post("/projectStore", [projectController::class,"store"]);
+Route::post("/projectStore", [projectController::class,"store"]);
 
 //task
 Route::get("/taskCreate/{projectId}", [taskController::class, "create"]);

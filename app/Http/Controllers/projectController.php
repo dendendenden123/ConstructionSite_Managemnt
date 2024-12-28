@@ -13,27 +13,31 @@ class projectController extends Controller
 {
     public function index(Request $request){
 
-        try{
-            $projects = Project::simplePaginate(5); 
-
-            if ($request->ajax()) {
-                return response()->json([
-                    'html' => view('datum_backend.adminProjectList', compact('projects'))->render(),
-                ]);
-            }
-                return view("/datum_backend.index", compact("projects"));
-            
-           
-        }catch(\Exception $e){
-            return response()->json([
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        $project = Project::with("user")->get();
+        return view("datum_backend.index", ["projects"=>$project]);
     }
 
+    public function create(){
+        return view("datum_backend.project-create", ["users"=>User::all()]);
+    }
 
     public function show($id){
         $project = Project::with(["user", "stockMovement", "task", "task.employee", "invoice", "contract"])->find($id); 
         return view("datum_backend.project", ["project"=>$project]);
     }
+
+    public function store(Request $request){
+       $project = Project::create($request->all());
+        
+        return response()->json(['id' => $project->id]);
+    }
+
+    public function edit(){
+        dd("edit");
+     }
+
+     public function update(){
+        dd("update");
+     }
+
 }
