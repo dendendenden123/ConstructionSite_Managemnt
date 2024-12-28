@@ -5,19 +5,28 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Datum | CRM Admin Dashboard Template</title>
       
       <!-- Favicon -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <link rel="shortcut icon" href="{{ asset('/datum_assets/images/favicon.ico')  }}" />
       
       <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend-plugin.min.css')  }}">
-      <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend.css?v=1.0.0')  }}">  </head>
+      <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend.css?v=1.0.0')  }}"> 
+      <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://www.dl.dropboxusercontent.com/s/bqe64u1e2ohl85o/jonisalert.css" rel="stylesheet">
+      <script src="https://www.dl.dropboxusercontent.com/s/tz85x4fc8vn9ayl/JonisAlert.min.js"></script>
+      
+    
+    </head>
   <body class=" color-light ">
     <!-- loader Start -->
-    <div id="loading">
+    {{-- <div id="loading">
           <div id="loading-center">
           </div>
-    </div>
+    </div> --}}
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
@@ -953,5 +962,6 @@
     
     
     <!-- app JavaScript -->
-    <script src="{{ asset('/datum_assets/js/app.js') }}"></script>  </body>
+    <scrip src="{{ asset('/datum_assets/js/app.js') }}"></script>  
+</body>
 </html>

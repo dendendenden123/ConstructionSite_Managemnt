@@ -1,6 +1,4 @@
 <x-datum_blank_page>
-
-
     <div class="container-fluid">
         <div class="row">
            <div class="col-lg-4">
@@ -149,6 +147,8 @@
                          <span class="mt-2 badge badge-pill badge-warning">{{$project->status}}</span>
                      @elseif ($project->status == "delayed")
                         <span class="mt-2 badge badge-pill badge-danger">{{$project->status}}</span>
+                     @elseif ($project->status == "pending")
+                        <span class="mt-2 badge badge-pill badge-secondary">{{$project->status}}</span>
                      @else
                      {{-- In progress --}}
                        <span class="mt-2 badge badge-pill badge-primary">{{$project->status}}</span>
@@ -180,12 +180,12 @@
                         </div>
                      </div>
                      <hr class="bg-dark border-0" style="height: 3px;">
-        
-                     <H5>Team and Roles</H5>
+                     
+                     <H5>Team and Roles</H5> 
                      <table class="table">
                         <thead>
                            <tr>
-                              <th scope="col">#</th>
+                              <th scope="col">Task ID</th>
                               <th scope="col">Team members</th>
                               <th scope="col">Department</th>
                               <th scope="col">Position</th>
@@ -195,22 +195,22 @@
                            </tr>
                         </thead>
                         <tbody>
-                           @php
-                              $rowCount = 1;
-                           @endphp
+         p
                            @foreach ($project->task  as  $task)
-                           <tr>
-                              <th scope="row">{{$rowCount++}}</th>
+                           <tr class="task{{$task->id}}">
+                              <th scope="row">{{$task->id}}</th>
                               <td>{{$task->employee->name}}</td>
                               <td>{{$task->employee->department}}</td>
                               <td>{{$task->employee->position}}</td>
                               <td>{{$task->description}}</td>
                               <td>{{$task->due_date}}</td>
                               <td>
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" stroke-width="1.5" stroke="green" class="size-1">
-                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                               </svg>
-                               <a href="/taskDelete/{{$project->id}}/{{$task->id}}">
+                                 <a href="/taskEdit/{{$project->id}}/{{$task->id}}">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" stroke-width="1.5" stroke="green" class="size-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                 </svg>
+                                 </a>
+                               <a class="task_delete" href="/taskDelete/{{$project->id}}/{{$task->id}}">
                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="red" class="size-1">
                                  <path fill-rule="evenodd" d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z" clip-rule="evenodd" />
                                </svg>
@@ -222,6 +222,10 @@
                            @endforeach
                         </tbody>
                         </table>
+
+                        <span class="d-flex justify-content-end">
+                           <a href="/task-create"><button class="btn btn-primary">Assign new Task</button></a>
+                       </span>
                      </div>
 
       
@@ -401,3 +405,40 @@
      </div>
 
 </x-datum_blank_page>
+<script>
+      $(document).on('click', '.task_delete', function(event) {
+         event.preventDefault();
+        
+         console.log($(this).attr('href'))
+      
+         let url = $(this).attr('href');
+        deleteTask(url);
+      });
+      
+      function deleteTask(url) {
+         $.ajax({
+            url: url,
+            success: function(response) {
+               let tableRow = $('.task_delete').parent().parent().attr("class"); // This selects the row
+               $("." + tableRow).remove();
+
+               ja({
+                     type: "success",
+                     animation: "rotateX",
+                     html: "<b style='font-size: 30px;'>Deleted!!</b><br>Task Deleted Successfully.",
+                     ontinueButtonHtml: "Got it!",
+                });
+
+            },
+            error: function(error) {
+                  
+                  ja({
+                     type: "error",
+                     animation: "rotateX",
+                     html: "<b style='font-size: 30px;'>!Erooor!</b><br>." + error,
+                     ontinueButtonHtml: "Got it!",
+                });
+            }
+         });
+      }
+</script>
