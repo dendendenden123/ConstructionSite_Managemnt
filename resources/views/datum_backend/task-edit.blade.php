@@ -1,5 +1,5 @@
 <x-datum_blank_page>
-    <h3>Update Task</h3><br>
+    <h3>Task ID: {{{{$task->id}}}} | Update</h3><br>
     <form class="taskUpdateForm" method="POST" action="/taskUpdate/{{$task->id}}">
         @csrf
         <div class="form-row">
@@ -23,7 +23,7 @@
                 @foreach ( $assignedEmployee as $employee)
                 <option value="{{ $employee[0] }}">
 
-                    <span>{{ $employee[1] }}&nbsp;&nbsp;&nbsp;</span>
+                    <span>kij i{{ $employee[1] }}&nbsp;&nbsp;&nbsp;</span>
                     <span>[{{     $employee[2] }} tasks]</span>
                 </option>
                 @endforeach
