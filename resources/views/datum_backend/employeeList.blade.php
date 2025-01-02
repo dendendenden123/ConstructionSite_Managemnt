@@ -1,5 +1,5 @@
 <x-datum_blank_page>
-    <button class="btn btn-primary" type="submit">Assign new Employee</button>
+    <a href="/employeeCreate"><button class="btn btn-primary" type="submit">Assign new Employee</button></a>
     <table class="table">
         <thead>
             <tr>

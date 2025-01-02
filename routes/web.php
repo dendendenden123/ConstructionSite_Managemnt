@@ -34,11 +34,15 @@ Route::post('/logout', [userController::class, "destroy"] );
 Route::post("/register",  [registerController::class, "store"]);
 
 //employee page
-Route::get("/employeeList", [employeeController::class, "index"]);
-Route::get("/employee", [employeeController::class, "show"]);
-Route::get("/employeeEdit/{id}", [employeeController::class, "edit"]);
-Route::post("/employeeUpdate/{id}", [employeeController::class, "update"]);
-Route::get("/employeeDelete/{id}", [employeeController::class, "destroy"]);
+Route::controller(employeeController::class)->group(function () {
+    Route::get('/employeeList', 'index');
+    Route::get('/employee', 'show');
+    Route::get('/employeeCreate', 'create');
+    Route::post('/employeeStore', 'store');
+    Route::get('/employeeEdit/{id}', 'edit');
+    Route::post('/employeeUpdate/{id}', 'update');
+    Route::get('/employeeDelete/{id}', 'destroy');
+});
 
 //project
 Route::get('/admin', [projectController::class,"index"]);
