@@ -7,10 +7,17 @@
       <title>Datum | CRM Admin Dashboard Template</title>
       
       <!-- Favicon -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <link rel="shortcut icon" href="{{ asset('/datum_assets/images/favicon.ico')  }}" />
       
       <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend-plugin.min.css')  }}">
-      <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend.css?v=1.0.0')  }}">  </head>
+      <link rel="stylesheet" href="{{ asset('/datum_assets/css/backend.css?v=1.0.0')  }}"> 
+      <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://www.dl.dropboxusercontent.com/s/bqe64u1e2ohl85o/jonisalert.css" rel="stylesheet">
+      <script src="https://www.dl.dropboxusercontent.com/s/tz85x4fc8vn9ayl/JonisAlert.min.js"></script>
+    
+    </head>
   <body class="  ">
     <!-- loader Start -->
     {{-- <div id="loading">
@@ -200,6 +207,15 @@
                               </i><span class="ml-2">Pricing</span>
                           </a>
                       </li>
+                      <li class=" sidebar-layout">
+                        <a href="/employeeList" class="svg-icon">
+                            <i class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </i><span class="ml-2">Employee</span>
+                        </a>
+                    </li>
                        <li class=" sidebar-layout">
                           <a href="/datum_backend/timeline.html" class="svg-icon">
                               <i class="">
@@ -1282,60 +1298,8 @@
                     </thead>
                   
                      <tbody class="adminProjectlist">
-
-                        @foreach ($projects as $project)
-
-                        <tr class="{{$project->id}}">
-                            <td>
-                                {{$project->id}}
-                            </td>
-                            <td>
-                                <div>
-                                    <a href="/admin/{{$project->id}}"> {{$project->name}}</a>
-                                </div>
-                            </td>
-                            <td>
-                                {{$project->user->name}}
-                            </td>
-                            <td>{{$project->description}}</td>
-                            <td>
-                                ${{$project->budget}}
-                            </td>
-                            <td>
-                                <p>
-                                    @if($project->status == "done")
-                                        <span class="mt-2 badge badge-pill badge-success">{{$project->status}}</span>
-                                    @elseif ($project->status == "cancelled")
-                                        <span class="mt-2 badge badge-pill badge-warning">{{$project->status}}</span>
-                                    @elseif ($project->status == "delayed")
-                                        <span class="mt-2 badge badge-pill badge-danger">{{$project->status}}</span>
-                                    @else
-                                        {{-- In progress --}}
-                                        <span class="mt-2 badge badge-pill badge-primary">{{$project->status}}</span>
-                                    @endif
-                                </p>
-                            </td>
-                            <td>
-                               {{ date('Y-m-d', strtotime($project->start_date))}}
-                            </td>
-                            <td>
-                                   {{{ date('Y-m-d', strtotime($project->due_date))}}}
-                            </td>
                         
-                            <td>
-                                <a href="/projectEdit/{{$project->id}}">
-                                    <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" stroke-width="1.5" stroke="green" class="size-1">
-                                       <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                    </svg>
-                                </a>
-                               <a class="project_delete" href="/projectDelete/{{$project->id}}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="red" class="size-1">
-                                        <path fill-rule="evenodd" d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z" clip-rule="evenodd" />
-                                    </svg>
-                               </a>
-                            </td>
-                        </tr>
-                        @endforeach
+                          @include('/datum_backend.adminProjectlist')
           
                         </tbody>
                     </table>
@@ -1421,46 +1385,48 @@
 </body>
 </html>
 
-<script> 
 
-        $(document).ready(function() {
-            console.log("page is readys")
-        });
+<script>
+    $(document).ready(function() {
+        console.log("page is ready");
+    });
 
-     $(".project_delete").on('click', function(event) {
-         event.preventDefault();
-
-         console.log("Delete Project");
-      
-         //let url = $(this).attr('href');
-       // deleteTask(url);
-      });
-      
-      function deleteTask(url) {
-         $.ajax({s
+    $(".project_delete").on('click', function(event) {
+        event.preventDefault();
+        console.log("Delete Project");
+        
+       let url = $(this).attr('href');
+       deleteTask(url);
+    });
+  
+    function deleteTask(url) {
+        $.ajax({
             url: url,
+            type: 'get',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(response) {
-               console.log(response.id);
-               $("." + response.id).remove();
+                $("." + response.message).remove();
 
-               ja({
-                     type: "success",
-                     animation: "rotateX",
-                     html: "<b style='font-size: 30px;'>Deleted!!</b><br>Task Deleted Successfully.",
-                     ontinueButtonHtml: "Got it!",
+                ja({
+                        type: "success",
+                        animation: "rotateX",
+                        html: "<b style='font-size: 30px;'>Great!!</b><br>Task was Assigned Successfully.",
+                        continueButtonHtml: "Got it!",
                 });
-
             },
             error: function(error) {
-                  
-                  ja({
-                     type: "error",
-                     animation: "rotateX",
-                     html: "<b style='font-size: 30px;'>!Erooor!</b><br>." + error,
-                     ontinueButtonHtml: "Got it!",
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'An error occurred while deleting the task',
+                    confirmButtonText: 'Got it!'
                 });
             }
-         });
-      }
-<script>
+        });
+    }
+</script> 
+
+
     

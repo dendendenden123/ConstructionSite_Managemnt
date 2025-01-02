@@ -10,6 +10,14 @@ class Employee extends Model
 {
     /** @use HasFactory<\Database\Factories\EmployeeFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'rfid_tag',
+        'position',
+        'department',
+        'hourly_rate',
+    ];
     
     public function attendace(){
         return $this->hasMany(Attendance::class);

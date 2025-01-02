@@ -11,7 +11,7 @@
            <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="exampleInputdate">Start Date</label>
-              <input type="date" class="form-control" id="exampleInputdate" value="{{$project->start_date}}"  name="start_date" >
+              <input type="date" class="form-control" id="exampleInputdate" value="{{date('Y-m-d', strtotime($project->start_date))}}"  name="start_date" >
            </div>
          </div>
 
@@ -32,7 +32,7 @@
          <div class="col-md-6 mb-3">
             <div class="form-group">
                 <label for="exampleInputdate">Due Date</label>
-                <input type="date" class="form-control" id="exampleInputdate" value="{{$project->end_date}}"  name="end_date" >
+                <input type="date" class="form-control" id="exampleInputdate" value="{{date('Y-m-d', strtotime($project->end_date))}}"  name="end_date" >
              </div>
 
            </div>

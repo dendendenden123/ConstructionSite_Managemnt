@@ -5,6 +5,7 @@ use App\Http\Controllers\taskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\employeeController;
 use App\Http\Controllers\clientProjectController;
 
 
@@ -32,9 +33,12 @@ Route::post('/logout', [userController::class, "destroy"] );
 //REGISTER PAGE
 Route::post("/register",  [registerController::class, "store"]);
 
-// //client projects
-// Route::get('/customer', [clientProjectController::class, "index"]);
-// Route::get('/customer/{id}', [clientProjectController::class, "show"]);
+//employee page
+Route::get("/employeeList", [employeeController::class, "index"]);
+Route::get("/employee", [employeeController::class, "show"]);
+Route::get("/employeeEdit/{id}", [employeeController::class, "edit"]);
+Route::post("/employeeUpdate/{id}", [employeeController::class, "update"]);
+Route::get("/employeeDelete/{id}", [employeeController::class, "destroy"]);
 
 //project
 Route::get('/admin', [projectController::class,"index"]);

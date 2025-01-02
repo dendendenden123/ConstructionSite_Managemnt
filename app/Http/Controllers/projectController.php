@@ -49,7 +49,7 @@ class projectController extends Controller
      public function destroy($projectId){
         $project = Project::find($projectId);
         $project->delete();
-        return response()->json(["id" => $projectId]);
+        return response()->json(["message" => $projectId]);
      }
 
 }
