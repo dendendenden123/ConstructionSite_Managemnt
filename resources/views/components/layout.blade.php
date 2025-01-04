@@ -57,7 +57,7 @@
                     </li>
       
                     <li class="nav-item ">
-                      <a class="nav-link" href="signup">Sign UP</a>
+                      <a class="nav-link" href="attendance">Time In/ Time Out</a>
                     </li>
                   @endguest
 

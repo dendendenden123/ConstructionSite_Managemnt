@@ -1,5 +1,5 @@
 <x-datum_blank_page>
-    <h3>Task ID: {{{{$task->id}}}} | Update</h3><br>
+    <h3>Task ID: {{{$task->id}}} | Update</h3><br>
     <form class="taskUpdateForm" method="POST" action="/taskUpdate/{{$task->id}}">
         @csrf
         <div class="form-row">

@@ -24,6 +24,8 @@ Route::view('/', '/landing_page.index');
 Route::view('/about','/landing_page.about');
 Route::view('/contact', '/landing_page.contact');
 Route::view('/service','/landing_page.service');
+Route::view('/attendance','/clockInOut');
+
 
 //START LOGIN PAGE
 Route::get('/login', [userController::class, "create"] );
@@ -36,9 +38,9 @@ Route::post("/register",  [registerController::class, "store"]);
 //employee page
 Route::controller(employeeController::class)->group(function () {
     Route::get('/employeeList', 'index');
-    Route::get('/employee', 'show');
     Route::get('/employeeCreate', 'create');
     Route::post('/employeeStore', 'store');
+    Route::get('/employee/{id}', 'show');
     Route::get('/employeeEdit/{id}', 'edit');
     Route::post('/employeeUpdate/{id}', 'update');
     Route::get('/employeeDelete/{id}', 'destroy');

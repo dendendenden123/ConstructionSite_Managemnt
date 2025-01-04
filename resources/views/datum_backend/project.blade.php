@@ -199,7 +199,7 @@
                            @foreach ($project->task  as  $task)
                            <tr class="task{{$task->id}}">
                               <th scope="row">{{$task->id}}</th>
-                              <td>{{$task->employee->name}}</td>
+                              <td><a href="/employee/{{$task->employee->id}}">{{$task->employee->name}}</a></td>
                               <td>{{$task->employee->department}}</td>
                               <td>{{$task->employee->position}}</td>
                               <td>{{$task->description}}</td>

@@ -31,16 +31,7 @@ class taskController extends Controller
     }
 
     public function update(Request $request, $taskId){
-        $task = Task::find($taskId);
-
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->employee_id = $request->employee_id;
-        $task->start_date = $request->start_date;
-        $task->due_date = $request->due_date;
-        $task->status = $request->status;
-
-        $task->save();;
+        Task::find($taskId)->update($request->all());
 
         return response()->json('success');
     }

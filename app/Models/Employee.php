@@ -19,7 +19,7 @@ class Employee extends Model
         'hourly_rate',
     ];
     
-    public function attendace(){
+    public function attendance(){
         return $this->hasMany(Attendance::class);
     }
 

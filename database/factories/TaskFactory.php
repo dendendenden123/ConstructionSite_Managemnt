@@ -19,7 +19,7 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            "project_id" =>1,
+            "project_id" => Project::factory(),
             "name" => fake()->name,
             "description" => fake()->text(50),
             "employee_id" => Employee::factory(),

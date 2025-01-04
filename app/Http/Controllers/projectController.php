@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Attendance;
 use App\Models\Employee;
 use App\Models\Project;
 use App\Models\Task;
@@ -23,6 +24,8 @@ class projectController extends Controller
 
     public function show($id){
         $project = Project::with(["user", "stockMovement", "task", "task.employee", "invoice", "contract"])->find($id); 
+
+
         return view("datum_backend.project", ["project"=>$project]);
     } 
 
