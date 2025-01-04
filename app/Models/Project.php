@@ -31,4 +31,8 @@ class Project extends Model
     public function contract(){
         return $this->hasOne(Contract::class);
     }
+
+    public function updateTimeline(){
+        return $this->hasMany(UpdateTimeline::class);
+    }
 }

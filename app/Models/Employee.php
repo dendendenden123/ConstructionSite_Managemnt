@@ -30,4 +30,8 @@ class Employee extends Model
     public function payroll(){
         return $this->hasMany(Payroll::class);
     }
+
+    public function updateTimeline(){
+        return $this->hasMany(UpdateTimeline::class);
+    }   
 }

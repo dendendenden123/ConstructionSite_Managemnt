@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Project;
 use App\Models\User;
+use App\Models\Employee;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UpdateTimeline>
@@ -19,8 +21,9 @@ class UpdateTimelineFactory extends Factory
     {
         return [
         
-            "user_id" => 2,
-            'project_id'=> fake()->numberBetween(0,3),
+            "user_id" => User::factory(),
+            'project_id'=> Project::factory(),
+            "employee_id" => Employee::factory(),
             'update_title'=> fake()->jobTitle,
             'update_description'=> fake()->text(10),
             'status'=> fake()->address(),

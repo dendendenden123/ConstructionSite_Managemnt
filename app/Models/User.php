@@ -67,4 +67,8 @@ class User extends Authenticatable
     public function project(){
         return $this->hasMany(Project::class);
     }
+
+    public function updateTimeline(){
+        return $this->hasMany(UpdateTimeline::class);
+    }
 }
