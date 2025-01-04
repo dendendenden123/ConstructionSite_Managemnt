@@ -172,140 +172,230 @@
 
                             <div>
                                 <br>
-                                
-                                        <hr class="bg-dark border-0" style="height: 3px;">
 
-                                        <H4>Task</H4>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Task ID</h5></th>
-                                                    <th scope="col">Project title</th>
-                                                    <th scope="col">Task title</th>
-                                                    <th scope="col">Task Assignment</th>
-                                                    <th scope="col">Due Date</th>
-                                                    <th scope="col">Task Status</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                <hr class="bg-dark border-0" style="height: 3px;">
 
-                                                @foreach ($employee->task as $task)
-                                                <tr class="task{{$task->id}}">
-                                                    <th scope="row">{{$task->id}}</th>
-                                                    <td><a
-                                                            href="/admin/{{$task->project->id}}">{{$task->project->name}}</a>
-                                                    </td>
-                                                    <td>{{$task->name}}</td>
-                                                    <td>{{$task->due_date}}</td>
-                                                    <td>{{$task->description}}</td>
-                                                    <td>
+                                <H4>Task</H4>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Task ID</h5>
+                                            </th>
+                                            <th scope="col">Project title</th>
+                                            <th scope="col">Task title</th>
+                                            <th scope="col">Task Assignment</th>
+                                            <th scope="col">Due Date</th>
+                                            <th scope="col">Task Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                                        @if($task->status == "done")
-                                                        <span
-                                                            class="mt-2 badge badge-pill badge-success">{{$task->status}}</span>
-                                                        @elseif ($task->status == "cancelled")
-                                                        <span
-                                                            class="mt-2 badge badge-pill badge-warning">{{$task->status}}</span>
-                                                        @elseif ($task->status == "delayed")
-                                                        <span
-                                                            class="mt-2 badge badge-pill badge-danger">{{$task->status}}</span>
-                                                        @elseif ($task->status == "pending")
-                                                        <span
-                                                            class="mt-2 badge badge-pill badge-secondary">{{$task->status}}</span>
-                                                        @else
-                                                        {{-- In progress --}}
-                                                        <span
-                                                            class="mt-2 badge badge-pill badge-primary">{{$task->status}}</span>
-                                                        @endif
-                                                    </td>
+                                        @foreach ($employee->task as $task)
+                                        <tr class="task{{$task->id}}">
+                                            <th scope="row">{{$task->id}}</th>
+                                            <td><a href="/admin/{{$task->project->id}}">{{$task->project->name}}</a>
+                                            </td>
+                                            <td>{{$task->name}}</td>
+                                            <td>{{$task->due_date}}</td>
+                                            <td>{{$task->description}}</td>
+                                            <td>
 
-                                                    <td>
-                                                        <div class="form-group">
-                                                           
-                                                            <form method="POST" class="statusForm" action="/taskUpdate/{{$task->id}}">
-                                                                @csrf
-                                                                <select name="status" class="selectStatus form-control form-control-sm mb-3">
-                                                                    <option selected="{{$task->status}}">
-                                                                        {{$task->status}}</option>
-                                                                    <option value="cancelled">cancelled</option>
-                                                                    <option value="delayed">delayed</option>
-                                                                    <option value="pending">pending</option>
-                                                                    <option value="done">done</option>
-                                                                    <option value="In progress">In progress</option>
-                                                                </select>
-                                                            </form>
-                                                        </div>
+                                                @if($task->status == "done")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-success">{{$task->status}}</span>
+                                                @elseif ($task->status == "cancelled")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-warning">{{$task->status}}</span>
+                                                @elseif ($task->status == "delayed")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-danger">{{$task->status}}</span>
+                                                @elseif ($task->status == "pending")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-secondary">{{$task->status}}</span>
+                                                @else
+                                                {{-- In progress --}}
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-primary">{{$task->status}}</span>
+                                                @endif
+                                            </td>
 
-                                                    </td>
+                                            <td>
+                                                <div class="form-group">
 
-                                                </tr>
-                                              
-                                                @endforeach
-                                
-                                            </tbody>
-                                        </table> 
-                                        
-                                        <br><br><br><br><hr class="bg-dark border-0" style="height: 3px;">
-                                        <H4>Attendance</H4>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ID</h5></th>
-                                                    <th scope="col">Time IN</th>
-                                                    <th scope="col">Time Out</th>
-                                                    <th scope="col">Hours work</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach ($attendance as $attend)
-                                            <tr class="{{$attend->id}}">
-                                                <td>{{$attend->id}}</td>
-                                                <td>{{$attend->check_in_time}}</td>
-                                                <td>{{$attend->check_out_time}}</td>
-                                                <td>{{$attend->hours_worked}}</td>
-                                            </tr>
-                                            @endforeach
+                                                    <form method="POST" class="statusForm"
+                                                        action="/taskUpdate/{{$task->id}}">
+                                                        @csrf
+                                                        <select name="status"
+                                                            class="selectStatus form-control form-control-sm mb-3">
+                                                            <option selected="{{$task->status}}">
+                                                                {{$task->status}}</option>
+                                                            <option value="cancelled">cancelled</option>
+                                                            <option value="delayed">delayed</option>
+                                                            <option value="pending">pending</option>
+                                                            <option value="done">done</option>
+                                                            <option value="In progress">In progress</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+
+                                <br><br><br><br>
+                                <hr class="bg-dark border-0" style="height: 3px;">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                       <h4 class="card-title">Project Update</h4>
+                                    </div>
+                                    <div class="card-header-toolbar d-flex align-items-center">                  
+                                       <a href="/projectUpdateCreate/{{$employee->id}}"> <button class="btn btn-primary">New Project Update</button></a>
+                                    </div>
+                                 </div>
+
+
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</h5>
+                                            </th>
+                                            <th scope="col">Client Name</th>
+                                            <th scope="col">Project Title</th>
+                                            <th scope="col">Task Update</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Task Status</th>
+                                            <th scope="col">Progress percentage</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($employee->updateTimeline as $update)
+                                        <tr class="update{{$update->id}}">
+                                            <th scope="row">{{$update->id}}</th>
+                                            <td>{{$update->user->name}}
+                                            </td>
+                                            <td><a href="/admin/{{$update->project->id}}">{{$update->project->name}}</a></td>
+                                            <td>{{$update->update_title}}</td>
+                                            <td>{{$update->description}}</td>
+                                            <td>
+
+                                                @if($update->status == "done")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-success">{{$update->status}}</span>
+                                                @elseif ($update->status == "cancelled")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-warning">{{$update->status}}</span>
+                                                @elseif ($update->status == "delayed")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-danger">{{$update->status}}</span>
+                                                @elseif ($update->status == "pending")
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-secondary">{{$update->status}}</span>
+                                                @else
+                                                {{-- In progress --}}
+                                                <span
+                                                    class="mt-2 badge badge-pill badge-primary">{{$update->status}}</span>
+                                                @endif
+                                            </td>
+
+                                            <td>{{$update->progress_percentage}}</td>
+
+                                        </tr>
+
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                                <br><br><br><br>
+                                <hr class="bg-dark border-0" style="height: 3px;">
+                                <H4>Attendance</H4>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</h5>
+                                            </th>
+                                            <th scope="col">Time IN</th>
+                                            <th scope="col">Time Out</th>
+                                            <th scope="col">Hours work</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($attendance as $attend)
+                                        <tr class="{{$attend->id}}">
+                                            <td>{{$attend->id}}</td>
+                                            <td>{{$attend->check_in_time}}</td>
+                                            <td>{{$attend->check_out_time}}</td>
+                                            <td>{{$attend->hours_worked}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>{{$attendance->links()}}
+
+
+                                <br><br><br><br>
+                                <hr class="bg-dark border-0" style="height: 3px;">
+                                <H4>Payslip</H4>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <h6>Employer ID</h6>
+                                                </h5>
+                                            </th>
+                                            <th>{{$employee->id}}</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5>Gross Pay</h5>
+                                            </td>
+                                            <td>
+                                                <h5>₱{{ number_format($grossPay, 2) }}</h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>SSS ( -4.5%)</h6>
+                                            </td>
+                                            <td>₱{{ number_format(($grossPay * 4.5) / 100, 2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>Pag-IBIG ( -4.5%)</h6>
+                                            </td>
+                                            <td>₱{{ number_format(($grossPay * 4.5) / 100, 2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>PhilHealth ( -₱100)</h6>
+                                            </td>
+                                            <td>₱100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>Tax ( -20%)</h6>
+                                            </td>
+                                            <td>₱{{ number_format(($grossPay * 20) / 100, 2)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h5>Net Salary</h5>
+                                            </td>
+                                            <td>
+                                                <h5>₱{{ number_format($netPay, 2)}}</h5>
+                                            </td>
+                                        </tr>
                                         </tbody>
-                                        </table>{{$attendance->links()}}
-
-
-                                        <br><br><br><br><hr class="bg-dark border-0" style="height: 3px;">
-                                        <H4>Payslip</H4>
-
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th><h6>Employer ID</h6></h5></th>
-                                                <th>{{$employee->id}}</th>
-                                            </tr>
-          
-                                            <tr>
-                                                <td><h5>Gross Pay</h5></td>
-                                                <td><h5>₱{{ number_format($grossPay, 2) }}</h5></td>
-                                            </tr>
-                                            <tr>
-                                                <td><h6>SSS ( -4.5%)</h6></td>
-                                                <td>₱{{ number_format(($grossPay * 4.5) / 100, 2)}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><h6>Pag-IBIG ( -4.5%)</h6></td>
-                                                <td>₱{{ number_format(($grossPay * 4.5) / 100, 2)}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><h6>PhilHealth ( -₱100)</h6></td>
-                                                <td>₱100</td>
-                                            </tr>
-                                            <tr>
-                                                <td><h6>Tax ( -20%)</h6></td>
-                                                <td>₱{{ number_format(($grossPay * 20) / 100, 2)}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><h5>Net Salary</h5></td>
-                                                <td><h5>₱{{ number_format($netPay, 2)}}</h5></td>
-                                            </tr>
-                                        </tbody>
-                                        </table>
+                                </table>
                             </div>
                         </div>
                     </div>

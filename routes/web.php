@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\projectController;
 use App\Http\Controllers\taskController;
+use App\Http\Controllers\updateTimelineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
@@ -62,6 +63,8 @@ Route::get("/taskDelete/{projectId}/{taskId}", [taskController::class, "destroy"
 Route::get("/taskEdit/{projectId}/{taskId}", [taskController::class, "edit"]);
 Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
 
+//Timelie/ Project Update
+Route::get("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "create"]);
 
 
 

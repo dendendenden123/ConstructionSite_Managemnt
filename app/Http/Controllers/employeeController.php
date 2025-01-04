@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 use App\Models\Employee;
 use App\Models\Attendance;
+use App\Models\UpdateTimeline;
 use Illuminate\Http\Request;
 
 class employeeController extends Controller
@@ -17,9 +18,18 @@ class employeeController extends Controller
 
     public function show($id)
     {
-        $employee = Employee::with(["task.project", "payroll", "attendance"])->find($id);
+        $employee = Employee::with([
+            "task.project",
+            "payroll",
+            "attendance",
+            "updateTimeline.employee",
+            "updateTimeline.project",
+            "updateTimeline.user",
+        ])->find($id);
+
         $attendance = Attendance::where('employee_id', $id)->simplePaginate(5);
         $totalHOurs = Attendance::where('employee_id', $id)->sum('hours_worked');
+
 
         $grossPay = $totalHOurs * $employee->hourly_rate;
         
