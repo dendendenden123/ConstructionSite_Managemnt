@@ -11,7 +11,8 @@ class UpdateTimeline extends Model
     use HasFactory;
 
     protected $fillable = [
-            "user_id",
+            'user_id',
+            'employee_id',
             'project_id',
             'update_title',
             'update_description',

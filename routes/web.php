@@ -65,6 +65,7 @@ Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
 
 //Timelie/ Project Update
 Route::get("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "create"]);
+Route::post("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "store"]);
 
 
 

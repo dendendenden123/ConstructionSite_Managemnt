@@ -284,7 +284,7 @@
                                             </td>
                                             <td><a href="/admin/{{$update->project->id}}">{{$update->project->name}}</a></td>
                                             <td>{{$update->update_title}}</td>
-                                            <td>{{$update->description}}</td>
+                                            <td>{{$update->update_description}}</td>
                                             <td>
 
                                                 @if($update->status == "done")
@@ -307,10 +307,13 @@
                                             </td>
 
                                             <td>{{$update->progress_percentage}}</td>
+                                            <td>Delete</td>
 
                                         </tr>
 
                                         @endforeach
+
+                            
                                     </tbody>
                                 </table>
 
