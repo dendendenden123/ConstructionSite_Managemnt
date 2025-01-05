@@ -21,7 +21,8 @@ class UpdateTimelineFactory extends Factory
     {
         return [
         
-            "user_id" => User::factory(),
+            // "user_id" => User::factory(),
+            "user_id" => 24,
             'project_id'=> Project::factory(),
             "employee_id" => Employee::factory(),
             'update_title'=> fake()->jobTitle,
