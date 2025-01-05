@@ -307,7 +307,11 @@
                                             </td>
 
                                             <td>{{$update->progress_percentage}}</td>
-                                            <td>Delete</td>
+                                            <td>    <a class="update_delete" href="/projectUpdateDelete/{{$employee->id}}/{{$update->id}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="red" class="size-1">
+                                                  <path fill-rule="evenodd" d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z" clip-rule="evenodd" />
+                                                </svg>
+                                                </a></td>
 
                                         </tr>
 
@@ -406,38 +410,26 @@
 
 </x-datum_blank_page>
 <script>
-    $('.selectStatus').on("change", function(event) {
-            event.preventDefault();
-
-            const actionUrl = $(this).closest(".statusForm").attr('action'); 
-            const formData = $(this).closest(".statusForm").serialize();
-
-            console.log("Submitting form data:", formData); // Debugging, remove in production
-
-           update(actionUrl, formData);
+    $('.update_delete').on("click", function(event) {
+        event.preventDefault();
+        let  actionUrl = $(this).attr("href");
+         delete(actionUrl);
         });
 
 
-        function update(actionUrl, formData) {
+        function delete(actionUrl) {
             $.ajax({
                 url: actionUrl,
-                method: 'POST',
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
+                method: 'Get',
                 success: function(response) {
+
+                    console.log(response)
                         ja({
                             type: "success",
                             animation: "rotateX",
                             html: "<b style='font-size: 30px;'>Great!!</b><br>Task Updated Successfully.",
                             continueButtonHtml: "Got it!",
                          });
-
-                         $(".ja-continue").on("click", function(){
-                            window.location.href = window.location.href;
-                         })
-
                         
                 },
                 error: function(xhr, status, error) {

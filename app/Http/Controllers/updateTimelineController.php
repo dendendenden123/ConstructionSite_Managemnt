@@ -28,5 +28,13 @@ class updateTimelineController extends Controller
     
       return response()->json(["message" => "success", "id" => $employeeID]);
     }
+
+    public function destroy($employeeId, $updateId){
+
+       UpdateTimeline::find($updateId)->delete();
+      // return response()->json("success");
+
+      return redirect("/employee/" . $employeeId);
+    }
     
 }
