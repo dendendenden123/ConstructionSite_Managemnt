@@ -28,7 +28,9 @@ Route::view('/service','/landing_page.service');
 Route::view('/attendance','/clockInOut');
 
 
-//START LOGIN PAGE
+//client 
+
+Route::get('/client', [userController::class, "index"] );
 Route::get('/login', [userController::class, "create"] );
 Route::post('/login', [userController::class, "store"] );
 Route::post('/logout', [userController::class, "destroy"] );
@@ -67,9 +69,3 @@ Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
 Route::get("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "create"]);
 Route::post("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "store"]);
 Route::get("/projectUpdateDelete/{employeeId}/{updateId}", [updateTimelineController::class, "destroy"]);
-
-
-
-
-
-

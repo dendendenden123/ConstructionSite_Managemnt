@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
-
+    public function index(){
+        return view("datum_backend.client");
+    }
 
     public function create(){
         return view('/authenticate.login');
@@ -38,18 +40,20 @@ class userController extends Controller
                 
            };
             request()->session()->regenerate();
+
+            $user = Auth::user();
+
+            dd($user);
+         
     
-            return redirect("/customer");
+            return redirect("/client");
         }
      }
 
     public function destroy(Request $request){
         Auth::logout(); 
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }
