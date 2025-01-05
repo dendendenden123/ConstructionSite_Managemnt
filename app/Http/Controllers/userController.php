@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers;
+use App\models\User;
 
 
 use Illuminate\Http\Request;
@@ -13,6 +14,15 @@ class userController extends Controller
 {
     public function index(){
         return view("datum_backend.client");
+    }
+
+    public function show($id){
+
+        if (Auth::id() !== (int) $id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view("/datum_backend.client", ["user" => User::find($id)]);
     }
 
     public function create(){
@@ -41,12 +51,9 @@ class userController extends Controller
            };
             request()->session()->regenerate();
 
-            $user = Auth::user();
-
-            dd($user);
-         
-    
-            return redirect("/client");
+        
+        
+            return redirect("/client-show/" . Auth::id());
         }
      }
 

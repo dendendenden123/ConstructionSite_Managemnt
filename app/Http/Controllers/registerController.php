@@ -10,20 +10,17 @@ use App\Models\User;
 class registerController extends Controller
 {
     public function store(Request $request){
-        $validated =  $request->validate([
-             'name' => ["required"],
-             'email' => ["required", "email"],
-             "password" => ["required", "confirmed"]
-         ]);
 
-         //temporarily all registered user is set to 'customer'
-         $validated += ['user_type' => "customer"];
+        $data = $request->all();
 
-        $user =  User::create($validated);
+        $data['user_type'] = "customer";
+        $data['status'] = "active";
+
+        $user =  User::create($data);
  
         Auth::login($user);
  
-         return redirect("/customer");
+         return redirect("/client-show/" . Auth::user()->id);
  
      }
 }

@@ -14,19 +14,35 @@
                         @csrf
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
-                            <input type="text" placeholder="Username" name="name">
+                            <input type="text" placeholder="Username" name="name" required>
                         </div>
                         <div class="input-group">
                             <i class='bx bx-mail-send'></i>
-                            <input type="email" placeholder="Email" name="email">
+                            <input type="email" placeholder="Email" name="email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="text" placeholder="Address" name="address" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="number" placeholder="number" name="number" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="number" placeholder="Contact Person number" name="contact_person" required>
+                        </div>
+
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" placeholder="Password" name="password" required>
                         </div>
                         <div class="input-group">
                             <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="Password" name="password">
-                        </div>
-                        <div class="input-group">
-                            <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="Confirm password" name="password_confirmation">
+                            <input type="password" placeholder="Confirm password" name="password_confirmation" required>
                         </div>
                         <button type="submit">
                             Sign up

@@ -29,8 +29,8 @@ Route::view('/attendance','/clockInOut');
 
 
 //client 
-
 Route::get('/client', [userController::class, "index"] );
+Route::get('/client-show/{id}', [userController::class, "show"] );
 Route::get('/login', [userController::class, "create"] );
 Route::post('/login', [userController::class, "store"] );
 Route::post('/logout', [userController::class, "destroy"] );
