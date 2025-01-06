@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\inventoryController;
 use App\Http\Controllers\projectController;
 use App\Http\Controllers\taskController;
 use App\Http\Controllers\updateTimelineController;
@@ -7,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\employeeController;
-use App\Http\Controllers\clientProjectController;
 
 
 //datum
@@ -69,3 +69,13 @@ Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
 Route::get("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "create"]);
 Route::post("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "store"]);
 Route::get("/projectUpdateDelete/{employeeId}/{updateId}", [updateTimelineController::class, "destroy"]);
+
+//inventory
+Route::get("/inventory", [inventoryController::class, "index"]);
+Route::get("/invedentory-edit/{itemId}", [inventoryController::class, "edit"]);
+Route::get("/invedentory-delete", [inventoryController::class, "destroy"]);
+
+
+//stockMovement
+Route::get("/stockMOvement-edit", [inventoryController::class, "edit"]);
+Route::get("/stockMOvement-delete", [inventoryController::class, "edit"]);
