@@ -1,17 +1,17 @@
 <x-datum_blank_page>
-    <h3>Task ID: {{{$task->id}}} | Update</h3><br>
-    <form class="taskUpdateForm" method="POST" action="/taskUpdate/{{$task->id}}">
+    <h3>Task ID: {{{$inventory->id}}} | Update</h3><br>
+    <form class="taskUpdateForm" method="POST" action="/taskUpdate/{{$inventory->id}}">
         @csrf
         <div class="form-row">
            <div class="col-md-6 mb-3">
               <label for="validationDefault01">Task Title</label>
-              <input type="text" class="form-control" id="validationDefault01"  name="name" value="{{$task->name}}"required>
+              <input type="text" class="form-control" id="validationDefault01"  name="name" value="{{$inventory->name}}"required>
            </div>
 
            <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="exampleInputdate">Start Date</label>
-              <input type="date" class="form-control" id="exampleInputdate" name="start_date" value="{{date('Y-m-d', strtotime($task->start_date))}}">
+              <input type="date" class="form-control" id="exampleInputdate" name="start_date" value="{{date('Y-m-d', strtotime($inventory->start_date))}}">
            </div>
          </div>
 
@@ -19,7 +19,7 @@
               <label for="validationDefaultUsername">Assigned To (Employee)
               </label>
               <select class="form-control" id="validationDefault04" name="employee_id" required>
-                <option selected  value="{{$task->employee->id}}">{{$task->employee->name}}</option>
+                <option selected  value="{{$inventory->employee->id}}">{{$inventory->employee->name}}</option>
                 @foreach ( $assignedEmployee as $employee)
                 <option value="{{ $employee[0] }}">
 
@@ -34,14 +34,14 @@
            <div class="col-md-6 mb-3">
             <div class="form-group">
                 <label for="exampleInputdate">Due Date</label>
-                <input type="date" class="form-control" id="exampleInputdate" name="due_date" value="{{date('Y-m-d', strtotime($task->due_date))}}">
+                <input type="date" class="form-control" id="exampleInputdate" name="due_date" value="{{date('Y-m-d', strtotime($inventory->due_date))}}">
              </div>
 
            </div>
            <div class="col-md-6 mb-3">
               <label for="validationDefault05">Status</label>
               <select class="form-control" id="validationDefault04" name="status" required>
-                <option selected value="{{$task->status}}">{{$task->status}}</option>
+                <option selected value="{{$inventory->status}}">{{$inventory->status}}</option>
                 <option value="Pending">Pending</option>
                 <option value="In progress">In progress</option>
                 <option value="done">done</option>
@@ -52,7 +52,7 @@
 
            <div class="col-md-6 mb-3">
             <label for="validationDefault02">Description</label>
-            <textarea class="form-control" id="validationDefault02" name="description" required>{{$task->description}}</textarea>
+            <textarea class="form-control" id="validationDefault02" name="description" required>{{$inventory->description}}</textarea>
          </div>
         </div>
         <div class="form-group">

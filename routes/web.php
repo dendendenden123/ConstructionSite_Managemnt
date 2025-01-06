@@ -13,30 +13,30 @@ use App\Http\Controllers\employeeController;
 //datum
 Route::get('/datum_backend/{page}', function ($page) {
     $name = "datum_backend." . str_replace(".html", "", $page);
-   return view($name);
+    return view($name);
 });
 Route::get('/datum_app/{page}', function ($page) {
     $name = "datum_app." . str_replace(".html", "", $page);
-   return view($name);
+    return view($name);
 });
 
 // START LANDING PAGE
 Route::view('/', '/landing_page.index');
-Route::view('/about','/landing_page.about');
+Route::view('/about', '/landing_page.about');
 Route::view('/contact', '/landing_page.contact');
-Route::view('/service','/landing_page.service');
-Route::view('/attendance','/clockInOut');
+Route::view('/service', '/landing_page.service');
+Route::view('/attendance', '/clockInOut');
 
 
 //client 
-Route::get('/client', [userController::class, "index"] );
-Route::get('/client-show/{id}', [userController::class, "show"] );
-Route::get('/login', [userController::class, "create"] );
-Route::post('/login', [userController::class, "store"] );
-Route::post('/logout', [userController::class, "destroy"] );
+Route::get('/client', [userController::class, "index"]);
+Route::get('/client-show/{id}', [userController::class, "show"]);
+Route::get('/login', [userController::class, "create"]);
+Route::post('/login', [userController::class, "store"]);
+Route::post('/logout', [userController::class, "destroy"]);
 
 //REGISTER PAGE
-Route::post("/register",  [registerController::class, "store"]);
+Route::post("/register", [registerController::class, "store"]);
 
 //employee page
 Route::controller(employeeController::class)->group(function () {
@@ -50,32 +50,41 @@ Route::controller(employeeController::class)->group(function () {
 });
 
 //project
-Route::get('/admin', [projectController::class,"index"]);
-Route::get('/admin/{id}', [projectController::class,"show"]);
-Route::get("/projectCreate", [projectController::class,"create"]);
-Route::post("/projectStore", [projectController::class,"store"]);
-Route::get("/projectEdit/{projectId}", [projectController::class,"edit"]);
-Route::post("/projectUpdate", [projectController::class,"upate"]);
-Route::get("/projectDelete/{projectId}", [projectController::class, "destroy"]);
+Route::controller(projectController::class)->group(function () {
+    Route::get('/admin', 'index');
+    Route::get('/admin/{id}', 'show');
+    Route::get('/projectCreate', 'create');
+    Route::post('/projectStore', 'store');
+    Route::get('/projectEdit/{projectId}', 'edit');
+    Route::post('/projectUpdate', 'update');
+    Route::get('/projectDelete/{projectId}', 'destroy');
+});
 
 //task
-Route::get("/taskCreate/{projectId}", [taskController::class, "create"]);
-Route::post("/taskStore/{projectId}", [taskController::class, "store"]);
-Route::get("/taskDelete/{projectId}/{taskId}", [taskController::class, "destroy"]);
-Route::get("/taskEdit/{projectId}/{taskId}", [taskController::class, "edit"]);
-Route::post("/taskUpdate/{taskId}", [taskController::class, "update"]);
+Route::controller(taskController::class)->group(function () {
+    Route::get('/taskCreate/{projectId}', 'create');
+    Route::post('/taskStore/{projectId}', 'store');
+    Route::get('/taskDelete/{projectId}/{taskId}', 'destroy');
+    Route::get('/taskEdit/{projectId}/{taskId}', 'edit');
+    Route::post('/taskUpdate/{taskId}', 'update');
+});
 
-//Timelie/ Project Update
-Route::get("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "create"]);
-Route::post("/projectUpdateCreate/{employeeID}", [updateTimelineController::class, "store"]);
-Route::get("/projectUpdateDelete/{employeeId}/{updateId}", [updateTimelineController::class, "destroy"]);
+//UpateTimeline
+Route::controller(updateTimelineController::class)->group(function () {
+    Route::get("/projectUpdateCreate/{employeeID}", "create");
+    Route::post("/projectUpdateCreate/{employeeID}", "store");
+    Route::get("/projectUpdateDelete/{employeeId}/{updateId}", "destroy");
+});
 
 //inventory
-Route::get("/inventory", [inventoryController::class, "index"]);
-Route::get("/invedentory-edit/{itemId}", [inventoryController::class, "edit"]);
-Route::get("/invedentory-delete", [inventoryController::class, "destroy"]);
-
+Route::controller(inventoryController::class)->group(function () {
+    Route::get("/inventory", "index");
+    Route::get("/invedentory-edit/{itemId}", "edit");
+    Route::get("/invedentory-delete", "destroy");
+});
 
 //stockMovement
-Route::get("/stockMOvement-edit", [inventoryController::class, "edit"]);
-Route::get("/stockMOvement-delete", [inventoryController::class, "edit"]);
+Route::controller(inventoryController::class)->group(function (){
+    Route::get("/stockMOvement-edit", "edit");
+    Route::get("/stockMOvement-delete", "destroy");
+});
