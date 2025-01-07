@@ -81,6 +81,8 @@ Route::controller(updateTimelineController::class)->group(function () {
 //inventory
 Route::controller(inventoryController::class)->group(function () {
     Route::get("/inventory", "index");
+    Route::get("inventory-create", "create");
+    Route::post("inventory-store", "store");
     Route::get("/invedentory-edit/{itemId}", "edit");
     Route::post("/inventory-update/{inventoryId}", "update");
     Route::get("/invedentory-delete/{inventoryId}", "destroy");
@@ -88,6 +90,9 @@ Route::controller(inventoryController::class)->group(function () {
 
 //stockMovement
 Route::controller(stockMovementController::class)->group(function (){
+    Route::get("/stockMovement-create", "create");
+    Route::post("/stockMovement-store", "store");
     Route::get("/stockMOvement-edit/{stockMovenmentId}", "edit");
+    Route::post("/stockMovement-update/{stockMovenmentId}", "update");
     Route::get("/stockMOvement-delete/{stockMovenmentId}", "destroy");
 });

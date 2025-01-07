@@ -1,6 +1,13 @@
 <x-datum_blank_page>
     <hr style="border-width: 6px; border-color: black" />
-    <h3>Inventory</h3>
+   <div class="card-header d-flex justify-content-between">
+        <div class="header-title">
+           <h4 class="card-title">Inventory</h4>
+        </div>
+        <div class="card-header-toolbar d-flex align-items-center">                  
+           <a href="/inventory-create"> <button class="btn btn-primary">New Inventory</button></a>
+        </div>
+     </div>
     <table class="table">
         <thead class="thead-light">
             <tr>
@@ -37,7 +44,14 @@
 
     <br><br>
     <hr style="border-width: 6px; border-color: black" />
-    <h3>Inventory Movement</h3>
+    <div class="card-header d-flex justify-content-between">
+        <div class="header-title">
+           <h4 class="card-title">Stock Movement</h4>
+        </div>
+        <div class="card-header-toolbar d-flex align-items-center">                  
+           <a href="/stockMovement-create"> <button class="btn btn-primary">New StockMOvement</button></a>
+        </div>
+     </div>
     <table class="table">
         <thead class="thead-light">
             <tr>
