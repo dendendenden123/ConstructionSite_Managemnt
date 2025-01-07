@@ -10,6 +10,8 @@ class Inventory extends Model
     /** @use HasFactory<\Database\Factories\InventoryFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
     public function stockMovement(){
         return $this->hasMany(StockMovement::class);
     }

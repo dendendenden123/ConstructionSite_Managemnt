@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\inventoryController;
 use App\Http\Controllers\projectController;
+use App\Http\Controllers\stockMovementController;
 use App\Http\Controllers\taskController;
 use App\Http\Controllers\updateTimelineController;
+use App\Models\StockMovement;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
@@ -80,11 +82,12 @@ Route::controller(updateTimelineController::class)->group(function () {
 Route::controller(inventoryController::class)->group(function () {
     Route::get("/inventory", "index");
     Route::get("/invedentory-edit/{itemId}", "edit");
-    Route::get("/invedentory-delete", "destroy");
+    Route::post("/inventory-update/{inventoryId}", "update");
+    Route::get("/invedentory-delete/{inventoryId}", "destroy");
 });
 
 //stockMovement
-Route::controller(inventoryController::class)->group(function (){
-    Route::get("/stockMOvement-edit", "edit");
-    Route::get("/stockMOvement-delete", "destroy");
+Route::controller(stockMovementController::class)->group(function (){
+    Route::get("/stockMOvement-edit/{stockMovenmentId}", "edit");
+    Route::get("/stockMOvement-delete/{stockMovenmentId}", "destroy");
 });

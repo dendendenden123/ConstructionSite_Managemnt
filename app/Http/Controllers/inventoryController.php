@@ -21,7 +21,13 @@ class inventoryController extends Controller
        return view("datum_backend.inventory-edit", ["inventory" =>  $inventory]);
     }
 
-    public function destroy(){
-        dd("code is hre");
+    public function update(Request $request, $inventoryId){
+        Inventory::find($inventoryId)->update($request->all());
+        return response()->json(["message" => "success"]);
+    }
+
+    public function destroy($inventoryId){
+        Inventory::find($inventoryId)->delete();
+        return response()->json($inventoryId);
     }
 }

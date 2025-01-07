@@ -1,5 +1,5 @@
 <x-datum_blank_page>
-    <h3>Inventory ID: {{{$inventory->id}}} | Update</h3><br>
+    <h3>Stock Movement ID: {{{$stockMovement->id}}} | Update</h3><br>
     <form class="inventoryUpdateForm" method="POST" action="/inventory-update/{{$inventory->id}}">
         @csrf
         <div class="form-row">
