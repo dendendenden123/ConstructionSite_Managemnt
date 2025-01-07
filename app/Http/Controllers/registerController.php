@@ -9,18 +9,28 @@ use App\Models\User;
 
 class registerController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        $data['user_type'] = "customer";
-        $data['status'] = "active";
+            $data['user_type'] = "customer";
+            $data['status'] = "active";
 
-        $user =  User::create($data);
- 
-        Auth::login($user);
- 
-         return redirect("/client-show/" . Auth::user()->id);
- 
-     }
+            $user = User::create($data);
+
+            Auth::login($user);
+            return response()->json(['message' => Auth::user()->id]);
+            // return redirect("/client-show/" . Auth::user()->id);
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->errors()]);
+        }
+
+    }
 }

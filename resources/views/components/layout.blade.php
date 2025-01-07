@@ -143,7 +143,9 @@
   });
 
     setInterval(function() {
-      $("#rfid_text").focus();
+      if (!$(":focus").is("input")) {
+        $("#rfid_text").focus();
+      }
     }, 1000);
 
 

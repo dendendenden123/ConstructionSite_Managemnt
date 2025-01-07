@@ -173,7 +173,17 @@
                     <br>
          
                     <div class="col-lg-12">                   
-                     <h3>Project Updates Timeline</h3>
+                     
+
+                     <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                           <h3>Project Updates Timeline</h3>
+                        </div>
+                        <div class="card-header-toolbar d-flex align-items-center">                  
+                           <a href="/projectUpdateCreate/1"> <button class="btn btn-primary requestAppointment">Request For Appointment</button></a>
+                        </div>
+                     </div>
+
                      <hr class="bg-dark border-0" style="height: 3px;">
                      <div class="card card-block card-stretch card-height">
                         <div class="card-body">
@@ -224,6 +234,21 @@
 
 </x-datum_blank_page>
 <script>
+
+   $(".requestAppointment").on("click", function(event){
+      event.preventDefault();
+          ja({
+                    type: "info",
+                    animation: "rotateX",
+                    html: "<b style='font-size: 30px;'>Request Sent!</b><br>Please wait for an email from our team.",
+                    ontinueButtonHtml: "Got it!",
+               });
+
+   })
+
+
+
+
      $(document).on('click', '.task_delete', function(event) {
         event.preventDefault();
        
