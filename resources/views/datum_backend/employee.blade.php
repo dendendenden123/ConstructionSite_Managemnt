@@ -329,6 +329,7 @@
                                         <tr>
                                             <th scope="col">ID</h5>
                                             </th>
+                                            <th scope="col">Date</th>
                                             <th scope="col">Time IN</th>
                                             <th scope="col">Time Out</th>
                                             <th scope="col">Hours work</th>
@@ -338,9 +339,10 @@
                                         @foreach ($attendance as $attend)
                                         <tr class="{{$attend->id}}">
                                             <td>{{$attend->id}}</td>
+                                            <td>{{ \Carbon\Carbon::parse($attend->updated_at)->format('F j, Y') }}</td>
                                             <td>{{$attend->check_in_time}}</td>
                                             <td>{{$attend->check_out_time}}</td>
-                                            <td>{{$attend->hours_worked}}</td>
+                                            <td>{{ number_format($attend->hours_worked, 1) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

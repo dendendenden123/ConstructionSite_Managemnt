@@ -18,7 +18,7 @@ class AttendanceFactory extends Factory
     public function definition(): array
     {
         return [
-            "employee_id" => 2,
+            "employee_id" => Employee::factory(),
             "check_in_time" => fake()->dateTimeThisMonth(),
             "check_out_time" => fake()->dateTimeThisMonth(),
             "hours_worked" => fake()->numberBetween(10,100)

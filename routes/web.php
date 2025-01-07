@@ -42,6 +42,8 @@ Route::post("/register", [registerController::class, "store"]);
 
 //employee page
 Route::controller(employeeController::class)->group(function () {
+    Route::post("/attendance", "attendance");
+
     Route::get('/employeeList', 'index');
     Route::get('/employeeCreate', 'create');
     Route::post('/employeeStore', 'store');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("quantity");
             $table->timestamp("date");
             $table->foreignIdFor(Project::class, "project_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(Employee::class, "project_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Employee::class, "employee_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

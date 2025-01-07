@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employee::class, "employee_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp("check_in_time");
-            $table->timestamp("check_out_time");
-            $table->decimal("hours_worked");
+            $table->timestamp("check_out_time")->nullable();
+            $table->decimal("hours_worked")->nullable();
             $table->timestamps();
         });  
     }
