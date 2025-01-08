@@ -43,6 +43,8 @@ class userController extends Controller
 
 
         if ($request->email == "admin@gmail.com" && $request->password == "admin") {
+            $user = User::where('email', $request->email)->first();
+            Auth::login($user);
             return redirect("/admin");
         } else {
 

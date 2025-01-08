@@ -60,7 +60,7 @@
                       <li class="px-3 pt-3 pb-2">
                           <span class="text-uppercase small font-weight-bold">Pages</span>
                       </li>
-                       <li class=" sidebar-layout">
+                       {{-- <li class=" sidebar-layout">
                           <a href="/datum_app/user-profile.html" class="svg-icon">
                               <i class="">
                                   <svg class="svg-icon" id="iq-user-1-1" xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +70,8 @@
                                   </svg>
                               </i><span class="ml-2">User Profile</span>
                           </a>
-                      </li>
-                      <li class="sidebar-layout">
+                      </li> --}}
+                      {{-- <li class="sidebar-layout">
                           <a href="#app1" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
                               <i>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,8 +129,8 @@
                                   </a>
                               </li>
                           </ul>
-                      </li>
-                      <li class="sidebar-layout">
+                      </li> --}}
+                      {{-- <li class="sidebar-layout">
                           <a href="#app6" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
                               <i>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -200,8 +200,8 @@
                                   </svg>
                               </i><span class="ml-2">Faq</span>
                           </a>
-                      </li>
-                      <li class=" sidebar-layout">
+                      </li> --}}
+                      {{-- <li class=" sidebar-layout">
                           <a href="/datum_backend/pricing.html" class="svg-icon">
                               <i class="">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -209,7 +209,7 @@
                                   </svg>
                               </i><span class="ml-2">Pricing</span>
                           </a>
-                      </li>
+                      </li> --}}
                       <li class=" sidebar-layout">
                         <a href="/employeeList" class="svg-icon">
                             <i class="">
@@ -218,7 +218,7 @@
                                 </svg>
                             </i><span class="ml-2">Employee</span>
                         </a>
-                    </li>
+                    {{-- </li>
                        <li class=" sidebar-layout">
                           <a href="/datum_backend/timeline.html" class="svg-icon">
                               <i class="">
@@ -227,7 +227,7 @@
                                   </svg>
                               </i><span class="ml-2">Timeline</span>
                           </a>
-                      </li>
+                      </li> --}}
 
                       <li class=" sidebar-layout">
                         <a href="/inventory" class="svg-icon">
@@ -238,10 +238,10 @@
                             </i><span class="ml-2">Inventory</span>
                         </a>
                     </li>
-                      <li class="px-3 pt-3 pb-2">
+                      {{-- <li class="px-3 pt-3 pb-2">
                           <span class="text-uppercase small font-weight-bold">Components</span>
-                      </li>
-                      <li class="sidebar-layout">
+                      </li> --}}
+                      {{-- <li class="sidebar-layout">
                           <a href="#app2" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
                               <i>
                                   <svg class="svg-icon" id="iq-ui-1" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -463,8 +463,8 @@
                                   </a>
                               </li>
                           </ul>
-                      </li>
-                      <li class="sidebar-layout">
+                      </li> --}}
+                      {{-- <li class="sidebar-layout">
                           <a href="#app3" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
                               <i>
                                   <svg class="svg-icon" id="iq-form-1" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -609,8 +609,8 @@
                                   </ul>
                               </li>
                           </ul>
-                      </li>
-                      <li class="sidebar-layout">
+                      </li> --}}
+                      {{-- <li class="sidebar-layout">
                           <a href="#app5" class="collapsed svg-icon" data-toggle="collapse" aria-expanded="false">
                               <i>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -654,8 +654,8 @@
                                   </a>
                               </li>
                           </ul>
-                      </li>
-                      <li class=" sidebar-layout">
+                      </li> --}}
+                      {{-- <li class=" sidebar-layout">
                           <a href="/datum_backend/chart-apex.html" class="svg-icon">
                               <i class="">
                                   <svg class="svg-icon" id="iq-chart-1" width="18" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -674,7 +674,7 @@
                               </i>
                               <span class="ml-2">Icon</span>
                           </a>
-                      </li>  
+                      </li>   --}}
                   </ul>
               </nav>
               <div class="pt-5 pb-5"></div>

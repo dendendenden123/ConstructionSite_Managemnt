@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\StockMovement;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use Illuminate\Support\Facades\Auth;
 
 class inventoryController extends Controller
 {
     public function index()
     {
+        
+        if(Auth::id() != 1){
+            return redirect("/client-show/" . Auth::id() );
+        }
 
         $inventory = Inventory::simplePaginate(5);
         $StockMovement = StockMovement::simplePaginate(5);

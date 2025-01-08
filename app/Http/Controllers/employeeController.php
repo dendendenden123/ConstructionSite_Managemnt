@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use App\Models\UpdateTimeline;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class employeeController extends Controller
 {
@@ -54,6 +55,9 @@ class employeeController extends Controller
     public function index()
     {
       
+        if(Auth::id() != 1){
+            return redirect("/client-show/" . Auth::id() );
+        }
         return view("/datum_backend.employeeList", ["employees" => Employee::all()]);
     }
 

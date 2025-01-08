@@ -6,7 +6,7 @@ use App\Models\Employee;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +15,11 @@ class projectController extends Controller
     public function index(Request $request){
 
         $project = Project::with("user")->get();
+
+        if(Auth::id() != 1){
+            return redirect("/client-show/" . Auth::id() );
+        }
+        
         return view("datum_backend.index", ["projects"=>$project]);
     }
 

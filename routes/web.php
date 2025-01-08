@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\employeeController;
+use illuminate\Support\Facades\Auth;
 
 
 //datum
@@ -91,7 +92,7 @@ Route::controller(inventoryController::class)->group(function () {
 });
 
 //stockMovement
-Route::controller(stockMovementController::class)->group(function (){
+Route::controller(stockMovementController::class)->group(function () {
     Route::get("/stockMovement-create", "create");
     Route::post("/stockMovement-store", "store");
     Route::get("/stockMOvement-edit/{stockMovenmentId}", "edit");
