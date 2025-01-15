@@ -169,7 +169,15 @@ function update(actionUrl, formData) {
         },
         success: function(response) {
 
-        if(response.message == "create"){
+          if(response.message == "limit_reached"){
+            ja({
+                    type: "error",
+                    animation: "rotateX",
+                    html: "<b style='font-size: 30px;'>ERROR !!</b><br>Time in limit has been reached.",
+                    continueButtonHtml: "Got it!",
+                 })
+
+          }else if(response.message == "create"){
           ja({
                     type: "success",
                     animation: "rotateX",

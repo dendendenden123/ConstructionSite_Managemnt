@@ -50,7 +50,7 @@
                 <option value="{{ $employee[0] }}">
 
                     <span>[ID: {{$employee[0] }}]&nbsp;&nbsp;&nbsp;{{ $employee[1] }}&nbsp;&nbsp;&nbsp;</span>
-                    <span>[{{     $employee[2] }} tasks]</span>
+                    <span>[position: {{     $employee[2] }} ] &nbsp;&nbsp;&nbsp; [{{     $employee[3] }} tasks]</span>
                 </option>
                 @endforeach
                 

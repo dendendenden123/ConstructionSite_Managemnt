@@ -17,7 +17,7 @@ class clientProjectController extends Controller
     }
 
     public function show($id){
-        if(Auth::check()){
+        if(Auth::check()){ 
             return view('customer_Show_Card', [
               "UserInfo" => Auth::User(),
              "ProjectInfo" => UpdateTimeline::where('id', $id)->orderBy('id', 'desc')->get()]);

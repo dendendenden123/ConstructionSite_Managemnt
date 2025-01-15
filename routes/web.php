@@ -56,6 +56,8 @@ Route::controller(employeeController::class)->group(function () {
 
 //project
 Route::controller(projectController::class)->group(function () {
+
+    Route::get("/printPayroll", 'generatePDF');
     Route::get('/admin', 'index');
     Route::get('/admin/{id}', 'show');
     Route::get('/projectCreate', 'create');

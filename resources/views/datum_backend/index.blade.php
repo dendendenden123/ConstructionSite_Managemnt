@@ -1321,6 +1321,12 @@
             </div>
          </div>
       </div>
+
+
+
+@include("datum_backend.printPayroll")
+
+
       <div class="col-lg-4 col-md-12">
          <div class="card">
             <div class="card-body">

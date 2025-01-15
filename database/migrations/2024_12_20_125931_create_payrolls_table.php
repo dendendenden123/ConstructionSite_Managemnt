@@ -15,12 +15,13 @@ return new class extends Migration
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Employee::class, "employee_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer("hours_worked");
-            $table->timestamp("pay_period_start");
-            $table->timestamp("pay_period_end");
-            $table->decimal("gross_salary");
-            $table->decimal("deductions");
-            $table->decimal("net_dalary");
+            $table->integer("hours_worked")->default(0);
+            $table->timestamp("Rate")->default(0);
+            $table->timestamp("Over Time")->default(0);
+            $table->decimal("Gross")->default(0);
+            $table->decimal("Taxes")->default(0);
+            $table->decimal("Deductions")->default(0);
+            $table->decimal("Netpay")->default(0);
             $table->timestamps();
         });
     }

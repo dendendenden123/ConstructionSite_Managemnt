@@ -16,7 +16,7 @@ class taskController extends Controller
 
         foreach($employee as $e) {
             $noTask = Task::where("employee_id", "=", $e->id)->count();
-            $assignedEmployee[] = [$e->id, $e->name, $noTask]; 
+            $assignedEmployee[] = [$e->id, $e->name, $e->position, $noTask ]; 
         }
 
         $defaultProject =  Project::find($projectId);
